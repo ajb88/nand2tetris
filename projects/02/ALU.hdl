@@ -42,5 +42,26 @@ CHIP ALU {
         ng; // 1 if (out < 0),  0 otherwise
 
     PARTS:
-   // Put you code here:
+   //Unary ALU for X
+   Mux16 (a=x, b[0]=false, sel=zx, out=xu1);
+   Not16 (in=xu1, out=notxu1);
+   Mux16 (a=xu1, b=notxu1, sel=nx, out=unx);
+
+   //Unary ALU for Y
+   Mux16 (a=y, b[0]=false, sel=zy, out=yu1);
+   Not16 (in=yu1, out=notyu1);
+   Mux16 (a=yu1, b=notyu1, sel=ny, out=uny);
+
+   And16 (a=unx, b=uny, out=andxy);
+   Add16 (a=unx, b=uny, out=addxy);
+
+   Mux16 (a=andxy, b=addxy, sel=f, out=outxy);
+
+   Not16 (in=outxy, out=notxy);
+
+   Mux16 (a=outxy, b=notxy, sel=no, out=out);
+
+
+
+
 }
