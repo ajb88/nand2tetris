@@ -67,7 +67,7 @@ CHIP ALU {
    Or16Way (in=test, out=ispos);
    Not (in=ispos, out=zr);
 
-   //Check for out<0
+
    
 
 
