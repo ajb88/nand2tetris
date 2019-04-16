@@ -59,7 +59,18 @@ CHIP ALU {
 
    Not16 (in=outxy, out=notxy);
 
-   Mux16 (a=outxy, b=notxy, sel=no, out=out);
+   Mux16 (a=outxy, b=notxy, sel=no, out=test, out[15]= ng, out=out);
+
+   //Mux16 (a=outxy, b=notxy, sel=no, out=test);
+
+   //Check for out=0
+   Or16Way (in=test, out=ispos);
+   Not (in=ispos, out=zr);
+
+   //Check for out<0
+   
+
+
 
 
 
